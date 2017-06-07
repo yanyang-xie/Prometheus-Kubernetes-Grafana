@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: blackbox-exporter
+  labels:
+    name: blackbox-exporter
+  annotations:
+    prometheus.io/scrape: "true"
+    prometheus.io/port: "9115"
+    prometheus.io/probe: "true"
+spec:
+  ports:
+    - port: 9115
+      name: blackbox-exporter
+      targetPort: 9115
+      protocol: TCP
+  selector:
+    app: blackbox-exporter
