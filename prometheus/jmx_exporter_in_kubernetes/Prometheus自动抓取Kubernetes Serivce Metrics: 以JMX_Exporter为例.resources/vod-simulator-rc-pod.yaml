@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: vod-simulator
+  labels:
+    name: vod-simulator
+    author: yy
+  annotations:
+    prometheus.io/scrape: 'true'
+    prometheus.io/port: '1234'
+spec:
+  replicas: 2
+  selector:
+    name: vod-simulator
+  template:
+    metadata:
+      name: vod-simulator
+      labels:
+        name: vod-simulator
+    spec:
+      containers:
+      - name: vod-simulator
+        image: yanyang/vod-simulator-agent
+        ports:
+        - containerPort: 8081
+        - containerPort: 1234
